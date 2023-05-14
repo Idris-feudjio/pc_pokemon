@@ -4,6 +4,47 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const logging_1 = require("./helpers/logging");
+const config_1 = __importDefault(require("./config/config"));
 const app = (0, express_1.default)();
-app.listen(3000);
+config_1.default
+    .sync()
+    .then(() => {
+    console.log("Database successfully connected");
+    StartServer();
+})
+    .catch((err) => {
+    console.log("Error", err);
+});
+const StartServer = () => {
+    app.use((req, res, next) => {
+        logging_1.Logging.info(`Incomming -> Method: [${req.method}] - url: [${req.url}] - IP: [${req.socket.remoteAddress}]`);
+        res.on("finish", () => {
+            logging_1.Logging.info(`Incomming -> Method: [${req.method}] - url: [${req.url}] - IP: [${req.socket.remoteAddress}] -Status Code : [${res.statusCode}]`);
+        });
+        next();
+    });
+    app.use(express_1.default.urlencoded({ extended: true }));
+    app.use(express_1.default.json());
+    app.use((req, res, next) => {
+        res.header("Acces-Control-Allow-Origin", "*");
+        res.header("Acces-Control-Allow-Origin", "Oringin, X-Requested-width, content-Type, Accept, Authorization");
+        if (req.method == "OPTIONS") {
+            res.header("Acces-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET ");
+            return res.status(201).json({});
+        }
+        next();
+    });
+    /* Routes **/
+    app.get("/ping", (req, res, next) => res.status(201).json({ message: "Hello world" }));
+    /* Error Handling */
+    app.use((req, res, next) => {
+        const error = new Error("Route Not Found");
+        logging_1.Logging.error(error);
+        return res.status(404).json({ message: error.message });
+    });
+    app.listen(process.env.PORT, () => {
+        logging_1.Logging.info(`Server is running on Port ${process.env.PORT}.`);
+    });
+};
 //# sourceMappingURL=server.js.map
