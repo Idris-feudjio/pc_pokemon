@@ -6,15 +6,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const logging_1 = require("./helpers/logging");
 const config_1 = __importDefault(require("./config/config"));
+const user_routes_1 = __importDefault(require("./app/users/user_routes"));
+const routes_1 = __importDefault(require("./app/pokemon/routes"));
 const app = (0, express_1.default)();
 config_1.default
-    .sync()
+    .sync({ force: true })
     .then(() => {
     console.log("Database successfully connected");
     StartServer();
 })
     .catch((err) => {
-    console.log("Error", err);
+    logging_1.Logging.error(err);
 });
 const StartServer = () => {
     app.use((req, res, next) => {
@@ -36,6 +38,8 @@ const StartServer = () => {
         next();
     });
     /* Routes **/
+    app.use(user_routes_1.default);
+    app.use(routes_1.default);
     app.get("/ping", (req, res, next) => res.status(201).json({ message: "Hello world" }));
     /* Error Handling */
     app.use((req, res, next) => {

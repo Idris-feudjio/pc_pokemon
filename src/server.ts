@@ -1,17 +1,19 @@
 import express from "express";
 import { Logging } from "./helpers/logging";
-import connection from "./config/config";
+import connection from "./config/config"; 
+import userRouter from "./app/users/user_routes";
+import pokemonsRouter from "./app/pokemon/routes";
 
 const app = express();
 
 connection
-  .sync()
+  .sync({force: true})
   .then(() => {
     console.log("Database successfully connected");
     StartServer();
   })
   .catch((err) => {
-    console.log("Error", err);
+    Logging.error(err)
   });
 
 const StartServer = () => {
@@ -44,7 +46,10 @@ const StartServer = () => {
     }
     next();
   });
-  /* Routes **/
+
+  /* Routes **/ 
+  app.use(userRouter)
+  app.use(pokemonsRouter)
   app.get("/ping", (req, res, next) =>
     res.status(201).json({ message: "Hello world" })
   );
