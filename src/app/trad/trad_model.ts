@@ -7,21 +7,22 @@ import {
   ForeignKey,
 } from "sequelize-typescript";
 import User from "../users/models/user.model";
-@Table({
-  timestamps: false,
+@Table({ 
   tableName: "trad",
 })
 export class Trad extends Model {
-  @Column({ type: DataType.NUMBER, allowNull: false })
-  giver_id: number;
-  @Column({ type: DataType.NUMBER, allowNull: true })
-  receiver_id: number;
-  @Column({ type: DataType.NUMBER, allowNull: true })
-  tradStatus: number;
-  @BelongsTo(() => User)
-  user!: User;
+ 
+  @ForeignKey(() => User)
+  @Column({ type: DataType.INTEGER, allowNull: false })
+  receiverId!: number;
 
   @ForeignKey(() => User)
-  @Column({ type: DataType.NUMBER, allowNull: false })
-  userId: number;
+  @Column({ type: DataType.INTEGER, allowNull: false })
+  giverId!: number;
+
+  @BelongsTo(() => User)
+  user: User;
+
+  @Column({ type: DataType.STRING, allowNull: true })
+  tradStatus: number;
 }

@@ -12,18 +12,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateUser = exports.getUserById = exports.getAllUser = exports.deleteUser = exports.createUser = void 0;
+exports.updateUser = exports.getUserById = exports.getAllUser = exports.deleteUser = void 0;
 const user_model_1 = __importDefault(require("../models/user.model"));
-const createUser = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    var user = yield user_model_1.default.create(Object.assign({}, req.body));
-    if (user) {
-        return res
-            .status(200)
-            .json({ message: "User created successfully", data: user });
+const user_service_1 = require("../services/user_service");
+class UserController extends user_service_1.UserService {
+    constructor() {
+        super(...arguments);
+        this.createUser = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            var user = yield user_model_1.default.create(Object.assign({}, req.body));
+            return res
+                .status(200)
+                .json({ message: "User created successfully", data: user });
+        });
     }
-    return res.json({ message: "ERROR" });
-});
-exports.createUser = createUser;
+}
+exports.default = UserController;
 const deleteUser = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     const deletedUser = yield user_model_1.default.findByPk(id);

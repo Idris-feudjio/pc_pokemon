@@ -1,16 +1,18 @@
 import { Router } from "express";
-import CreateUserDto from "./dtos/create_user_dto";
+import UserController from "./controller/user_controller";
 import {
-  createUser,
+  //createUser,
   deleteUser,
   getAllUser,
   getUserById,
   updateUser,
 } from "./controller/user_controller";
+import User from "./models/user.model";
 
-const userRouter = Router(); 
+const userRouter = Router();
+var userController = new UserController();
 
-userRouter.post("/register", createUser);
+userRouter.post("/register", userController.createUser);
 userRouter.get("/users", getAllUser);
 userRouter.get("/users/:id", getUserById);
 userRouter.put("/users/:id", updateUser);

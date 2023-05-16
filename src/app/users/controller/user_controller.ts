@@ -1,16 +1,19 @@
- import User from "../models/user.model";
+import { Model } from "sequelize-typescript";
+import AbstractDao from "../../../public/dao";
+import { AbstractCrudRepository } from "../../../public/repositories/abstract_crud_repositories";
+import User from "../models/user.model";
 
 import { RequestHandler } from "express";
+import { UserService } from "../services/user_service";
 
-export const createUser: RequestHandler = async (req, res, next) => {
-  var user = await User.create({ ...req.body });
-  if(user){
+export default class UserController extends UserService {
+  createUser: RequestHandler = async (req, res, next) => {
+    var user = await User.create({ ...req.body });
     return res
-    .status(200)
-    .json({ message: "User created successfully", data: user });
-  }
-  return res.json({message: "ERROR"})
-};
+      .status(200)
+      .json({ message: "User created successfully", data: user });
+  };
+}
 
 export const deleteUser: RequestHandler = async (req, res, next) => {
   const { id } = req.params;

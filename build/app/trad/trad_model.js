@@ -15,24 +15,21 @@ const user_model_1 = __importDefault(require("../users/models/user.model"));
 let Trad = class Trad extends sequelize_typescript_1.Model {
 };
 __decorate([
-    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.NUMBER, allowNull: false })
-], Trad.prototype, "giver_id", void 0);
+    (0, sequelize_typescript_1.ForeignKey)(() => user_model_1.default),
+    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.INTEGER, allowNull: false })
+], Trad.prototype, "receiverId", void 0);
 __decorate([
-    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.NUMBER, allowNull: true })
-], Trad.prototype, "receiver_id", void 0);
-__decorate([
-    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.NUMBER, allowNull: true })
-], Trad.prototype, "tradStatus", void 0);
+    (0, sequelize_typescript_1.ForeignKey)(() => user_model_1.default),
+    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.INTEGER, allowNull: false })
+], Trad.prototype, "giverId", void 0);
 __decorate([
     (0, sequelize_typescript_1.BelongsTo)(() => user_model_1.default)
 ], Trad.prototype, "user", void 0);
 __decorate([
-    (0, sequelize_typescript_1.ForeignKey)(() => user_model_1.default),
-    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.NUMBER, allowNull: false })
-], Trad.prototype, "userId", void 0);
+    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.STRING, allowNull: true })
+], Trad.prototype, "tradStatus", void 0);
 Trad = __decorate([
     (0, sequelize_typescript_1.Table)({
-        timestamps: false,
         tableName: "trad",
     })
 ], Trad);

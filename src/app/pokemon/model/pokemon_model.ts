@@ -3,8 +3,7 @@ import {
   Model,
   Column,
   DataType,
-  ForeignKey,
-  PrimaryKey,
+  ForeignKey, 
   BelongsTo,
 } from "sequelize-typescript";
 import User from "../../users/models/user.model";
@@ -13,7 +12,6 @@ import User from "../../users/models/user.model";
   tableName: "pokemons",
 })
 export class Pokemons extends Model {
-  
   @Column({ type: DataType.STRING, allowNull: false })
   espece: string;
 
@@ -21,25 +19,24 @@ export class Pokemons extends Model {
   name: string;
 
   @Column({ type: DataType.STRING, allowNull: false })
-  gender!: Gender;
+  gender: Gender;
 
   @Column({ type: DataType.STRING, allowNull: false })
-  weigth!: string;
+  weigth: string;
 
-  @Column({ type: DataType.NUMBER, allowNull: false })
-  level!: number;
+  @Column({ type: DataType.STRING, allowNull: false })
+  level: string;
 
-  //@Column({ type: DataType.NUMBER, allowNull: false })
-  heigth!: number;
+  @Column({ type: DataType.STRING, allowNull: false })
+  heigth: string;
 
-  //@Column({ type: DataType.BOOLEAN, allowNull: false })
-  chrome!: boolean;
-
-  @BelongsTo(() => User)
-  user!: User;
+  @Column({ type: DataType.STRING, allowNull: false })
+  chrome: string;
 
   @ForeignKey(() => User)
-  @PrimaryKey
-  @Column({ type: DataType.NUMBER, allowNull: false })
-  userId!: number;
+  @Column({ type: DataType.INTEGER, allowNull: false })
+  userId: number;
+
+  @BelongsTo(() => User)
+  user: User;
 }

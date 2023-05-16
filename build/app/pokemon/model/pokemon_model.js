@@ -27,16 +27,21 @@ __decorate([
     (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.STRING, allowNull: false })
 ], Pokemons.prototype, "weigth", void 0);
 __decorate([
-    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.NUMBER, allowNull: false })
+    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.STRING, allowNull: false })
 ], Pokemons.prototype, "level", void 0);
+__decorate([
+    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.STRING, allowNull: false })
+], Pokemons.prototype, "heigth", void 0);
+__decorate([
+    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.STRING, allowNull: false })
+], Pokemons.prototype, "chrome", void 0);
+__decorate([
+    (0, sequelize_typescript_1.ForeignKey)(() => user_model_1.default),
+    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.INTEGER, allowNull: false })
+], Pokemons.prototype, "userId", void 0);
 __decorate([
     (0, sequelize_typescript_1.BelongsTo)(() => user_model_1.default)
 ], Pokemons.prototype, "user", void 0);
-__decorate([
-    (0, sequelize_typescript_1.ForeignKey)(() => user_model_1.default),
-    sequelize_typescript_1.PrimaryKey,
-    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.NUMBER, allowNull: false })
-], Pokemons.prototype, "userId", void 0);
 Pokemons = __decorate([
     (0, sequelize_typescript_1.Table)({
         timestamps: false,
