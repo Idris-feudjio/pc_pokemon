@@ -1,5 +1,4 @@
+import { Optional } from "sequelize";
 import IUser from "../models/interfaces/user";
 
-export default class CreateUserDto implements Partial<IUser> {
-
-}  
+type CreateUserDto = Optional<IUser,"birthDay"> 
