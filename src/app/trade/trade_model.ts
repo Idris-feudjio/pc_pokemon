@@ -8,9 +8,9 @@ import {
 } from "sequelize-typescript";
 import User from "../users/models/user.model";
 @Table({ 
-  tableName: "trad",
+  tableName: "trade",
 })
-export class Trad extends Model {
+export class Trade extends Model {
  
   @ForeignKey(() => User)
   @Column({ type: DataType.INTEGER, allowNull: false })
@@ -24,5 +24,5 @@ export class Trad extends Model {
   user: User;
 
   @Column({ type: DataType.STRING, allowNull: true })
-  tradStatus: number;
+  tradStatus: string;
 }

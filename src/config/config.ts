@@ -3,7 +3,7 @@ import { Sequelize } from "sequelize-typescript";
 import dotenv from "dotenv";
 import User from "../app/users/models/user.model";
 import { Pokemons } from "../app/pokemon/model/pokemon_model";
-import { Trad } from "../app/trad/trad_model";
+import { Trade } from "../app/trade/trade_model";
 
 dotenv.config();
 
@@ -15,7 +15,7 @@ const connection = new Sequelize({
   password: process.env.DB_PASSWORD || "",
   database: process.env.DB_NAME,
   logging: false,
-  models: [User, Pokemons, Trad],
+  models: [User, Pokemons, Trade],
 });
 
 export default connection;

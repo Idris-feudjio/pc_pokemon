@@ -7,7 +7,7 @@ import {
   Validate
 } from "sequelize-typescript";
 import { Pokemons } from "../../pokemon/model/pokemon_model";
-import { Trad } from "../../trad/trad_model";
+import { Trad } from "../../trade/trade_model";
 @Table({ tableName: "user", timestamps: false })
 export default class User extends Model {
   @Validate({ notNull: { msg: "You must enter a firstName" } })

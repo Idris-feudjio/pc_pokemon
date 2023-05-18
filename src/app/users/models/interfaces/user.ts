@@ -1,5 +1,5 @@
 import { Pokemons } from "../../../pokemon/model/pokemon_model";
-import { Trad } from "../../../trad/trad_model";
+import { Trad } from "../../../trade/trade_model";
 
 export default interface IUser{ 
     firstName: string; 

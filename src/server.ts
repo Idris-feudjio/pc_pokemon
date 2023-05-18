@@ -72,12 +72,18 @@ const StartServer = () => {
 
 
   function isUserAuthenticated(req: Request, res: any, next: NextFunction) {
+    // si l'utilisateur est authentifié, on continue sinon on le redirige vers la page d'authentification
     if (req.user) {
+      next();
+    } else {
+      res.redirect("/login");
+    }
+    /*if (req.user) {
       next();
     } else {
       console.log("you must login!");
       res.send
-    }
+    }*/
   }
  
   app.use(passport.initialize());

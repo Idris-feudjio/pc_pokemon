@@ -1,11 +1,11 @@
 import { NextFunction, Request, Response, Router } from "express";
 import UserController from "./controller/user_controller";
-import { Schema, ValidateSchema } from "../../midleware/validations";
+//import { Schema, ValidateSchema } from "../../midleware/validations";
 import passport from "passport";
 const userRouter = Router();
 var userController = new UserController();
 
-function ensureAuthenticated(req: Request, res: Response, next: NextFunction) {
+function ensureAuthenticated(req: Request, res: Response, next: NextFunction){
   console.log(req.user);
   if (req.isAuthenticated()) {
     return next();
@@ -16,7 +16,7 @@ function ensureAuthenticated(req: Request, res: Response, next: NextFunction) {
 userRouter.post(
   "/register",
   ensureAuthenticated,
-  ValidateSchema(Schema.user.create),
+  //ValidateSchema(Schema.user.create),
   userController.createUser
 );
 userRouter.get("/users", userController.getAllUser);
