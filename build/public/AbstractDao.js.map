@@ -1,0 +1,1 @@
+{"version":3,"file":"AbstractDao.js","sourceRoot":"","sources":["../../src/public/AbstractDao.ts"],"names":[],"mappings":";;AACA,0FAAmF;AAInF,MAAqB,WAEnB,SAAQ,mDAAyB;IACjC,YAAsB,KAAe;QACnC,KAAK,EAAE,CAAC;QADY,UAAK,GAAL,KAAK,CAAU;QAEnC,IAAI,CAAC,KAAK,GAAG,KAAK,CAAC;IACrB,CAAC;CACF;AAPD,8BAOC"}
