@@ -17,6 +17,7 @@ const connection = new sequelize_typescript_1.Sequelize({
     password: process.env.DB_PASSWORD || "",
     database: process.env.DB_NAME,
     logging: false,
+    typeValidation: true,
     models: [user_model_1.default, pokemon_model_1.Pokemons, trad_model_1.Trad],
 });
 exports.default = connection;

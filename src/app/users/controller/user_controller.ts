@@ -8,7 +8,7 @@ export default class UserController extends UserService {
   private userService = new UserService();
 
   createUser: RequestHandler = async (req, res, next) => {
-    var user = await this.userService.create(req.body);
+    var user = await User.create(req.body);
     return res
       .status(200)
       .json({ message: "User created successfully", data: user });

@@ -18,13 +18,13 @@ export class Pokemons extends Model {
   @Column({ type: DataType.STRING, allowNull: false })
   name: string;
 
-  @Column({ type: DataType.DOUBLE, allowNull: false })
+  @Column({ type: DataType.STRING, allowNull: false })
   gender: string;
 
   @Column({ type: DataType.DOUBLE, allowNull: false })
   weigth: number;
 
-  @Column({ type: DataType.DOUBLE, allowNull: false })
+  @Column({ type: DataType.INTEGER, allowNull: false })
   level: number;
 
   @Column({ type: DataType.DOUBLE, allowNull: false ,})

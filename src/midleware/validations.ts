@@ -1,7 +1,8 @@
 import { NextFunction, Response, Request } from "express";
 import Joi, { ObjectSchema, string } from "joi";
 import { Logging } from "../helpers/logging";
-import IUser from "../app/users/models/interfaces/user";
+import IUser from "../app/users/models/interfaces/user"; 
+import { GiverPokemon } from "../app/trad/interfaces/giver_dto";
 
 export const ValidateSchema = (schema: ObjectSchema) => {
   return async (req: Request, res: Response, next: NextFunction) => {
@@ -50,5 +51,8 @@ export const Schema = {
       heigth: Joi.number(),
       level: Joi.number().min(1).max(100),
     }).options({ allowUnknown: true, stripUnknown: true }),
+  },
+  trade: {
+    initTrad: Joi.object<GiverPokemon>({}),
   },
 };

@@ -19,6 +19,7 @@ __decorate([
     (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.INTEGER, allowNull: false })
 ], Trad.prototype, "receiverId", void 0);
 __decorate([
+    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.DATE, allowNull: false }),
     (0, sequelize_typescript_1.ForeignKey)(() => user_model_1.default),
     (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.INTEGER, allowNull: false })
 ], Trad.prototype, "giverId", void 0);
@@ -28,9 +29,14 @@ __decorate([
 __decorate([
     (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.STRING, allowNull: true })
 ], Trad.prototype, "tradStatus", void 0);
+__decorate([
+    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.DATE, allowNull: false })
+], Trad.prototype, "updatedAt", void 0);
 Trad = __decorate([
     (0, sequelize_typescript_1.Table)({
         tableName: "trad",
+        createdAt: true,
+        updatedAt: true,
     })
 ], Trad);
 exports.Trad = Trad;

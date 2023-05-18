@@ -15,6 +15,7 @@ const connection = new Sequelize({
   password: process.env.DB_PASSWORD || "",
   database: process.env.DB_NAME,
   logging: false,
+  typeValidation: true, 
   models: [User, Pokemons, Trad],
 });
 

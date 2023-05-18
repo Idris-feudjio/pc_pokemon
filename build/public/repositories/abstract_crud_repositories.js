@@ -24,6 +24,21 @@ class AbstractRepository {
             return this.model.findByPk(id);
         });
     }
+    findOne(field, options) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.model.findOne({ where: { field }, attributes: options });
+        });
+    }
+    findAllAndPaginate(params) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.model.findAndCountAll({
+                where: Object.assign({}, params.field),
+                attributes: params.projections,
+                limit: params.limit,
+                offset: params.offset,
+            });
+        });
+    }
     create(data) {
         return __awaiter(this, void 0, void 0, function* () {
             return this.model.create(data);
@@ -35,8 +50,7 @@ class AbstractRepository {
     // ): Promise<[number, T[]]> {
     //   return this.model.update(data, { where: [id] });
     // }
-    func() {
-    }
+    func() { }
     delete(where) {
         return __awaiter(this, void 0, void 0, function* () {
             return this.model.destroy({ where: where });

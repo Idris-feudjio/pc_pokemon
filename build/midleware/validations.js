@@ -64,5 +64,8 @@ exports.Schema = {
             level: joi_1.default.number().min(1).max(100),
         }).options({ allowUnknown: true, stripUnknown: true }),
     },
+    trade: {
+        initTrad: joi_1.default.object({}),
+    },
 };
 //# sourceMappingURL=validations.js.map

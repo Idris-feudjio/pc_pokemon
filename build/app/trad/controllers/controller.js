@@ -12,28 +12,28 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const user_model_1 = __importDefault(require("../models/user.model"));
-const user_service_1 = require("../services/user_service");
-class UserController extends user_service_1.UserService {
+const user_model_1 = __importDefault(require("../../users/models/user.model"));
+const service_trad_1 = __importDefault(require("../services/service_trad"));
+class UserController extends service_trad_1.default {
     constructor() {
         super(...arguments);
-        this.userService = new user_service_1.UserService();
+        this.userService = new service_trad_1.default();
         this.createUser = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            var user = yield user_model_1.default.create(req.body);
+            var trad = yield user_model_1.default.create(req.body);
             return res
                 .status(200)
-                .json({ message: "User created successfully", data: user });
+                .json({ message: "Trad created successfully", data: trad });
         });
         this.updateUser = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             yield user_model_1.default.update(Object.assign({}, req.body), { where: { id } });
             const updatedUser = yield user_model_1.default.findOne({
                 where: { id },
-                attributes: ["id", "firstName", "lastName", "birthDay", "rightAccess"],
+                attributes: [],
             });
             return res
                 .status(200)
-                .json({ message: "User updated successfully", data: updatedUser });
+                .json({ message: "Trad updated successfully", data: updatedUser });
         });
         this.deleteUser = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
@@ -64,4 +64,4 @@ class UserController extends user_service_1.UserService {
     }
 }
 exports.default = UserController;
-//# sourceMappingURL=user_controller.js.map
+//# sourceMappingURL=controller.js.map

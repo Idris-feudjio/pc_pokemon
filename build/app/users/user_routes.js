@@ -10,7 +10,7 @@ const userRouter = (0, express_1.Router)();
 var userController = new user_controller_1.default();
 function ensureAuthenticated(req, res, next) {
     console.log(req.user);
-    if (req.isAuthenticated()) {
+    if (req.user) {
         return next();
     }
     res.status(404).send({ message: "you must login!" });
