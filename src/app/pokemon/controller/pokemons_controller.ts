@@ -55,3 +55,11 @@ export const updatePokemons: RequestHandler = async (req, res, next) => {
     res.status(504).json({ message: "User Not Found" });
   }
 };
+
+export const getUserPokemons: RequestHandler = async (req, res, next) => {
+  const { userId } = req.params;
+  const pokemons: Pokemons | null = await Pokemons.findOne({where:{userId}});
+  return res
+    .status(200)
+    .json({ message: "Pokemons fetched successfully", data: pokemons });
+};

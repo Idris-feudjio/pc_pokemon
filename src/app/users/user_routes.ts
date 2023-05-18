@@ -7,15 +7,14 @@ var userController = new UserController();
 
 function ensureAuthenticated(req: Request, res: Response, next: NextFunction) {
   console.log(req.user);
-  if (req.isAuthenticated()) {
+  if (req.user) {
     return next();
   }
   res.status(404).send({ message: "you must login!" });
 }
 
 userRouter.post(
-  "/register",
-  ensureAuthenticated,
+  "/register", 
   ValidateSchema(Schema.user.create),
   userController.createUser
 );
