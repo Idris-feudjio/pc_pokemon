@@ -9,27 +9,39 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AbstractCrudRepository = void 0;
-class AbstractCrudRepository {
-    create(body) {
+exports.AbstractRepository = void 0;
+class AbstractRepository {
+    constructor(model) {
+        this.model = model;
+    }
+    findAll() {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield body.save().then(model => {
-                return model;
-            }).catch(err => { return err; });
+            return this.model.findAll();
         });
     }
-    delete(id) {
-        return this.model.destroy();
-    }
     findById(id) {
-        throw new Error("Method not implemented.");
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.model.findByPk(id);
+        });
     }
-    listAll() {
-        throw new Error("Method not implemented.");
+    create(data) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.model.create(data);
+        });
     }
-    searchAll(parameterName, parameterValue, sortBy, order, pageSize, pageNumber) {
-        throw new Error("Method not implemented.");
+    // async update(
+    //   id: WhereOptions<Attributes<T>>| undefined,
+    //   data: object
+    // ): Promise<[number, T[]]> {
+    //   return this.model.update(data, { where: [id] });
+    // }
+    func() {
+    }
+    delete(where) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.model.destroy({ where: where });
+        });
     }
 }
-exports.AbstractCrudRepository = AbstractCrudRepository;
+exports.AbstractRepository = AbstractRepository;
 //# sourceMappingURL=abstract_crud_repositories.js.map
