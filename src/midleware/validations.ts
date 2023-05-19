@@ -2,7 +2,8 @@ import { NextFunction, Response, Request } from "express";
 import Joi, { ObjectSchema, string } from "joi";
 import { Logging } from "../helpers/logging";
 import IUser from "../app/users/models/interfaces/user"; 
-import { GiverPokemon } from "../app/trad/interfaces/giver_dto";
+import GiverPokemonDto from "../app/trad/interfaces/giver_dto";
+import RecieverPokemonDto from "../app/trad/interfaces/receiver_dto";
 
 export const ValidateSchema = (schema: ObjectSchema) => {
   return async (req: Request, res: Response, next: NextFunction) => {
@@ -36,8 +37,7 @@ export const Schema = {
   pokemons: {
     create: Joi.object<IPokemons>({
       name: Joi.string().required(),
-      espece: Joi.string().required(),
-      userId: Joi.number().required(),
+      espece: Joi.string().required(), 
       chrome: Joi.string(),
       gender: Joi.string(),
       heigth: Joi.number(),
@@ -49,10 +49,19 @@ export const Schema = {
       chrome: Joi.string(),
       gender: Joi.string(),
       heigth: Joi.number(),
-      level: Joi.number().min(1).max(100),
+      level: Joi.number().greater(1).less(100).required(),
     }).options({ allowUnknown: true, stripUnknown: true }),
   },
   trade: {
-    initTrad: Joi.object<GiverPokemon>({}),
+    initializeTrade: Joi.object<GiverPokemonDto>({
+      giverId: Joi.number().required(),
+      tradStatus: Joi.string().required(),
+      tradItem: Joi.array().max(6).required()
+    }),
+    updateTrade: Joi.object<RecieverPokemonDto>({
+      receiverId: Joi.number().required(),
+      tradStatus: Joi.string().required(),
+      tradItem: Joi.array().length(6).required(),
+    }),
   },
 };

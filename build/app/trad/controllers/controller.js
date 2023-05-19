@@ -12,56 +12,55 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const user_model_1 = __importDefault(require("../../users/models/user.model"));
 const service_trad_1 = __importDefault(require("../services/service_trad"));
-class UserController extends service_trad_1.default {
+const trad_model_1 = require("../models/trad_model");
+class TradeController extends service_trad_1.default {
     constructor() {
         super(...arguments);
-        this.userService = new service_trad_1.default();
-        this.createUser = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            var trad = yield user_model_1.default.create(req.body);
-            return res
-                .status(200)
-                .json({ message: "Trad created successfully", data: trad });
-        });
-        this.updateUser = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+        this.tradeService = new service_trad_1.default();
+        this.updateTrade = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield user_model_1.default.update(Object.assign({}, req.body), { where: { id } });
-            const updatedUser = yield user_model_1.default.findOne({
+            yield trad_model_1.Trad.update(Object.assign({}, req.body), { where: { id } });
+            const updatedTrade = yield trad_model_1.Trad.findOne({
                 where: { id },
                 attributes: [],
             });
             return res
                 .status(200)
-                .json({ message: "Trad updated successfully", data: updatedUser });
+                .json({ message: "Trad updated successfully", data: updatedTrade });
         });
-        this.deleteUser = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+        this.deleteTrade = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const user = yield user_model_1.default.findByPk(id);
-            if (user) {
-                yield user_model_1.default.destroy({ where: { id } });
-                return res.status(200).json({ message: "User deleted successfully" });
+            const trade = yield trad_model_1.Trad.findByPk(id);
+            if (trade) {
+                yield trad_model_1.Trad.destroy({ where: { id } });
+                return res.status(200).json({ message: "Trade deleted successfully" });
             }
             else {
-                res.status(504).json({ message: "User Not Found" });
+                res.status(504).json({ message: "Trade Not Found" });
             }
         });
-        this.getAllUser = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            const allUser = yield user_model_1.default.findAll({
-                attributes: ["id", "firstName", "lastName", "birthDay", "rightAccess"],
-            });
+        this.getAllTradeByUser = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            const { userId } = req.params;
+            const allTrade = yield trad_model_1.Trad.findAll({ where: { giverId: userId } });
             return res
                 .status(200)
-                .json({ message: "User fetched successfully", data: allUser });
+                .json({ message: "Trade fetched successfully", data: allTrade });
         });
-        this.getUserById = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            const { id } = req.params;
-            const user = yield user_model_1.default.findByPk(id);
+        this.getAllTrade = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            const allTrade = yield trad_model_1.Trad.findAll();
             return res
                 .status(200)
-                .json({ message: "User fetched successfully", data: user });
+                .json({ message: "Trade fetched successfully", data: allTrade });
+        });
+        this.getTradeById = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            const trade = yield trad_model_1.Trad.findByPk(id);
+            return res
+                .status(200)
+                .json({ message: "Trade fetched successfully", data: trade });
         });
     }
 }
-exports.default = UserController;
+exports.default = TradeController;
 //# sourceMappingURL=controller.js.map

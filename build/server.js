@@ -21,6 +21,7 @@ const passport_1 = __importDefault(require("passport"));
 const cookie_session_1 = __importDefault(require("cookie-session"));
 const user_model_1 = __importDefault(require("./app/users/models/user.model"));
 const passport_oauth2_1 = __importDefault(require("passport-oauth2"));
+const trade_route_1 = __importDefault(require("./app/trad/trade_route"));
 const app = (0, express_1.default)();
 config_1.default
     .sync({ force: true })
@@ -95,6 +96,7 @@ const StartServer = () => {
     /* Routes **/
     app.use(user_routes_1.default);
     app.use(routes_1.default);
+    app.use(trade_route_1.default);
     app.get("/ping", (req, res, next) => res.status(201).json({ message: "Hello world" }));
     app.get("/auth/oauth2", passport_1.default.authenticate("oauth2"));
     // secret route

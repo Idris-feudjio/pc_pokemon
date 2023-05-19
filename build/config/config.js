@@ -7,7 +7,7 @@ const sequelize_typescript_1 = require("sequelize-typescript");
 const dotenv_1 = __importDefault(require("dotenv"));
 const user_model_1 = __importDefault(require("../app/users/models/user.model"));
 const pokemon_model_1 = require("../app/pokemon/model/pokemon_model");
-const trad_model_1 = require("../app/trad/trad_model");
+const trad_model_1 = require("../app/trad/models/trad_model");
 dotenv_1.default.config();
 const connection = new sequelize_typescript_1.Sequelize({
     dialect: "mysql",

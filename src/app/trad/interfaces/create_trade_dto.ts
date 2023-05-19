@@ -1,8 +1,11 @@
+import { Pokemons } from "../../pokemon/model/pokemon_model";
+
 interface ITrade {
-  tradeId: number;
+  id: number;
   receiverId: number;
   giverId: number;
   tradStatus: number;
   createdAt: string;
-  updatedAt: string;
+  updatedAt: string; 
+  tradItem: Pokemons[];
 }

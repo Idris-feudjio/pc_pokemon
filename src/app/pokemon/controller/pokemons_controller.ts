@@ -4,6 +4,7 @@ import { RequestHandler } from "express";
 import { PokemonsService } from "../services/pokemon_services";
 import getPagingData from "../../../helpers/paginations";
 import User from "../../users/models/user.model";
+import { log } from "console";
 
 export default class PokemonsController extends PokemonsService {
   private pokemonsService = new PokemonsService();
@@ -77,13 +78,18 @@ export default class PokemonsController extends PokemonsService {
   };
 
   findAllPokemonPaginate: RequestHandler = async (req, res, next) => {
-    const { limit, query, offset } = req.params;
+    const { page, pageSize, qurey } = req.body;
 
     const pokemons = await Pokemons.findAndCountAll({
-      where: { query },
-      limit: parseInt(limit),
+      where: { ...qurey },
+      limit:  pageSize ?? 20,
+      offset: page ?? 0,
     });
-    const allPokemons = getPagingData(pokemons, 1, 1);
+    const allPokemons = getPagingData(
+      pokemons,
+      page ?? 0,
+      pageSize ?? 20,
+    );
     return res
       .status(200)
       .json({ message: "Pokemons fetched successfully", data: allPokemons });

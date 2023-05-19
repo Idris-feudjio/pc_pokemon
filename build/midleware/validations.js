@@ -49,7 +49,6 @@ exports.Schema = {
         create: joi_1.default.object({
             name: joi_1.default.string().required(),
             espece: joi_1.default.string().required(),
-            userId: joi_1.default.number().required(),
             chrome: joi_1.default.string(),
             gender: joi_1.default.string(),
             heigth: joi_1.default.number(),
@@ -61,11 +60,20 @@ exports.Schema = {
             chrome: joi_1.default.string(),
             gender: joi_1.default.string(),
             heigth: joi_1.default.number(),
-            level: joi_1.default.number().min(1).max(100),
+            level: joi_1.default.number().greater(1).less(100).required(),
         }).options({ allowUnknown: true, stripUnknown: true }),
     },
     trade: {
-        initTrad: joi_1.default.object({}),
+        initializeTrade: joi_1.default.object({
+            giverId: joi_1.default.number().required(),
+            tradStatus: joi_1.default.string().required(),
+            tradItem: joi_1.default.array().max(6).required()
+        }),
+        updateTrade: joi_1.default.object({
+            receiverId: joi_1.default.number().required(),
+            tradStatus: joi_1.default.string().required(),
+            tradItem: joi_1.default.array().length(6).required(),
+        }),
     },
 };
 //# sourceMappingURL=validations.js.map

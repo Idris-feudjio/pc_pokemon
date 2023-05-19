@@ -8,7 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_typescript_1 = require("sequelize-typescript");
 const pokemon_model_1 = require("../../pokemon/model/pokemon_model");
-const trad_model_1 = require("../../trad/trad_model");
+const trad_model_1 = require("../../trad/models/trad_model");
 let User = class User extends sequelize_typescript_1.Model {
 };
 __decorate([

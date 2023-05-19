@@ -3,7 +3,7 @@ import { Sequelize } from "sequelize-typescript";
 import dotenv from "dotenv";
 import User from "../app/users/models/user.model";
 import { Pokemons } from "../app/pokemon/model/pokemon_model";
-import { Trad } from "../app/trad/trad_model";
+import { Trad } from "../app/trad/models/trad_model";
 
 dotenv.config();
 

@@ -7,6 +7,7 @@ import passport from "passport";
 import cookieSession from "cookie-session";
 import User from "./app/users/models/user.model";
 import OAuth2Strategy from "passport-oauth2";
+import tradeRouter from "./app/trad/trade_route";
 
 const app = express();
 
@@ -116,6 +117,7 @@ const StartServer = () => {
   /* Routes **/
   app.use(userRouter);
   app.use(pokemonsRouter);
+  app.use(tradeRouter);
   app.get("/ping", (req, res, next) =>
     res.status(201).json({ message: "Hello world" })
   );

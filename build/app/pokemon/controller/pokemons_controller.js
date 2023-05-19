@@ -85,10 +85,13 @@ class PokemonsController extends pokemon_services_1.PokemonsService {
                 .json({ message: "Pokemons fetched successfully", data: pokemons });
         });
         this.findAllPokemonPaginate = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            const { limit, query, offset } = req.body;
-            console.log({ limit, query, offset });
-            const pokemons = yield pokemon_model_1.Pokemons.findAndCountAll();
-            const allPokemons = (0, paginations_1.default)(pokemons, 1, 1);
+            const { page, pageSize, qurey } = req.body;
+            const pokemons = yield pokemon_model_1.Pokemons.findAndCountAll({
+                where: Object.assign({}, qurey),
+                limit: pageSize !== null && pageSize !== void 0 ? pageSize : 20,
+                offset: page !== null && page !== void 0 ? page : 0,
+            });
+            const allPokemons = (0, paginations_1.default)(pokemons, page !== null && page !== void 0 ? page : 0, pageSize !== null && pageSize !== void 0 ? pageSize : 20);
             return res
                 .status(200)
                 .json({ message: "Pokemons fetched successfully", data: allPokemons });
