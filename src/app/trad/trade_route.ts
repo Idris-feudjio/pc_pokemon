@@ -15,15 +15,15 @@ function ensureAuthenticated(req: Request, res: Response, next: NextFunction) {
 
 tradeRouter.post(
   "/trade", 
- ///ValidateSchema(Schema.trade.initializeTrade),
+ //ValidateSchema(Schema.trade.initializeTrade),
   tradeController.createTrade
 );
 tradeRouter.get("/users/:userId/trade", tradeController.getAllTradeByUser);
+tradeRouter.get("/users/:userId/trade", tradeController.tradeWaitingLine);
 tradeRouter.get("/trade", tradeController.getAllTrade);
 tradeRouter.get("/users/:userId/trade/:tradeId", tradeController.getTradeById); 
 
-tradeRouter.patch("/trade/:tradeId", tradeController.updateTrade); 
-tradeRouter.patch("/trade/:tradeId", tradeController.updateTrade); 
+tradeRouter.patch("/trade/:tradeId", tradeController.updateTrade);  
 
 
 export default tradeRouter;

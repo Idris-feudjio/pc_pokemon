@@ -79,17 +79,14 @@ export default class PokemonsController extends PokemonsService {
 
   findAllPokemonPaginate: RequestHandler = async (req, res, next) => {
     const { page, pageSize, qurey } = req.body;
+    const { userId } = req.params;
 
     const pokemons = await Pokemons.findAndCountAll({
-      where: { ...qurey },
-      limit:  pageSize ?? 20,
+      where: { ...qurey, userId: userId },
+      limit: pageSize ?? 20,
       offset: page ?? 0,
     });
-    const allPokemons = getPagingData(
-      pokemons,
-      page ?? 0,
-      pageSize ?? 20,
-    );
+    const allPokemons = getPagingData(pokemons, page ?? 0, pageSize ?? 20);
     return res
       .status(200)
       .json({ message: "Pokemons fetched successfully", data: allPokemons });

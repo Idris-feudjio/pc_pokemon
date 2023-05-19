@@ -66,7 +66,7 @@ exports.Schema = {
     trade: {
         initializeTrade: joi_1.default.object({
             giverId: joi_1.default.number().required(),
-            tradStatus: joi_1.default.string().required(),
+            //tradStatus: Joi.string().required(),
             tradItem: joi_1.default.array().max(6).required()
         }),
         updateTrade: joi_1.default.object({

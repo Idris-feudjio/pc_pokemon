@@ -55,7 +55,7 @@ export const Schema = {
   trade: {
     initializeTrade: Joi.object<GiverPokemonDto>({
       giverId: Joi.number().required(),
-      tradStatus: Joi.string().required(),
+      //tradStatus: Joi.string().required(),
       tradItem: Joi.array().max(6).required()
     }),
     updateTrade: Joi.object<RecieverPokemonDto>({

@@ -12,6 +12,10 @@ pokemonsRouter.post(
   pokemonsController.createPokemons
 );
 pokemonsRouter.get(
+  "/pokemons",
+  pokemonsController.getAllPokemons
+);
+pokemonsRouter.get(
   "/users/:userId/pokemons",
   pokemonsController.findAllPokemonPaginate
 );

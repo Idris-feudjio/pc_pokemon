@@ -15,12 +15,12 @@ function ensureAuthenticated(req, res, next) {
     res.status(404).send({ message: "you must login!" });
 }
 tradeRouter.post("/trade", 
-///ValidateSchema(Schema.trade.initializeTrade),
+//ValidateSchema(Schema.trade.initializeTrade),
 tradeController.createTrade);
 tradeRouter.get("/users/:userId/trade", tradeController.getAllTradeByUser);
+tradeRouter.get("/users/:userId/trade", tradeController.tradeWaitingLine);
 tradeRouter.get("/trade", tradeController.getAllTrade);
 tradeRouter.get("/users/:userId/trade/:tradeId", tradeController.getTradeById);
-tradeRouter.patch("/trade/:tradeId", tradeController.updateTrade);
 tradeRouter.patch("/trade/:tradeId", tradeController.updateTrade);
 exports.default = tradeRouter;
 //# sourceMappingURL=trade_route.js.map

@@ -86,8 +86,9 @@ class PokemonsController extends pokemon_services_1.PokemonsService {
         });
         this.findAllPokemonPaginate = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             const { page, pageSize, qurey } = req.body;
+            const { userId } = req.params;
             const pokemons = yield pokemon_model_1.Pokemons.findAndCountAll({
-                where: Object.assign({}, qurey),
+                where: Object.assign(Object.assign({}, qurey), { userId: userId }),
                 limit: pageSize !== null && pageSize !== void 0 ? pageSize : 20,
                 offset: page !== null && page !== void 0 ? page : 0,
             });

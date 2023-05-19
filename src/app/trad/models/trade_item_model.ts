@@ -1,8 +1,8 @@
 export default class TradeItem {
-  private giverId: number;
-  private pokemonGiverId: number;
-  private pokemonReceiverId: number;
-  private creationDate: Date;
+  giverId: number;
+  pokemonGiverId: number;
+  pokemonReceiverId: number;
+  creationDate: Date;
   constructor(
     giverId: number,
     pokemonGiverId: number,

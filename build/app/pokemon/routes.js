@@ -9,6 +9,7 @@ const pokemons_controller_1 = __importDefault(require("./controller/pokemons_con
 const pokemonsRouter = (0, express_1.Router)();
 const pokemonsController = new pokemons_controller_1.default();
 pokemonsRouter.post("/users/:userId/pokemons", (0, validations_1.ValidateSchema)(validations_1.Schema.pokemons.create), pokemonsController.createPokemons);
+pokemonsRouter.get("/pokemons", pokemonsController.getAllPokemons);
 pokemonsRouter.get("/users/:userId/pokemons", pokemonsController.findAllPokemonPaginate);
 pokemonsRouter.get("/users/:userId/pokemons/:id", pokemonsController.getPokemonsById);
 pokemonsRouter.put("/users/:userId/pokemons/:id", pokemonsController.updatePokemons);
