@@ -25,10 +25,10 @@ __decorate([
     (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.STRING, allowNull: false, defaultValue: 'cynthia' })
 ], User.prototype, "password", void 0);
 __decorate([
-    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.STRING, allowNull: false, defaultValue: '8 octobre 1999' })
+    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.STRING, allowNull: true, defaultValue: '8 octobre 1999' })
 ], User.prototype, "birthDay", void 0);
 __decorate([
-    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.STRING, allowNull: false, defaultValue: "l\'intégralité des droits" })
+    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.STRING, allowNull: false, defaultValue: 'users:create users:read users:update:all users:delete:all pokemons:create:all pokemons:read pokemons:update:all pokemons:delete:all trade:create:all trade:read trade:update:all logs:read' })
 ], User.prototype, "rightAccess", void 0);
 __decorate([
     (0, sequelize_typescript_1.HasMany)(() => pokemon_model_1.Pokemons, {

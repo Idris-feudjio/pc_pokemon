@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updatePokemons = exports.getPokemonsById = exports.getAllPokemons = exports.deletePokemons = exports.createPokemons = void 0;
+exports.getUserPokemons = exports.updatePokemons = exports.getPokemonsById = exports.getAllPokemons = exports.deletePokemons = exports.createPokemons = void 0;
 const pokemon_model_1 = require("../model/pokemon_model");
 const pokemon_services_1 = require("../services/pokemon_services");
 class PokemonsController extends pokemon_services_1.PokemonsService {
@@ -67,4 +67,12 @@ const updatePokemons = (req, res, next) => __awaiter(void 0, void 0, void 0, fun
     }
 });
 exports.updatePokemons = updatePokemons;
+const getUserPokemons = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const { userId } = req.params;
+    const pokemons = yield pokemon_model_1.Pokemons.findOne({ where: { userId } });
+    return res
+        .status(200)
+        .json({ message: "Pokemons fetched successfully", data: pokemons });
+});
+exports.getUserPokemons = getUserPokemons;
 //# sourceMappingURL=pokemons_controller.js.map

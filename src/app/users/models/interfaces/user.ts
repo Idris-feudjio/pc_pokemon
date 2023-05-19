@@ -7,7 +7,7 @@ export default interface IUser{
     login: string; 
     password: string; 
     birthDay: string ; 
-    rightAccess: RightAccess; 
+    rightAccess: string; 
     pokemons: Pokemons[]; 
     trad: Trad[];
 }

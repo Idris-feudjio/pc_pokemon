@@ -15,11 +15,25 @@ connection
   .then(() => {
     console.log("Database successfully connected");
     StartServer();
+    User.findOrCreate({
+      where: { id: 1 },
+      defaults: {
+        firstName: "Pokemaniac",
+        lastName: "Leo",
+        login: "leopkmn",
+        password: "cynthia",
+        birthDay: "8 octobre 1999",
+        rightAccess: "users:create users:read users:update:all users:delete:all pokemons:create:all pokemons:read pokemons:update:all pokemons:delete:all trade:create:all trade:read trade:update:all logs:read",
+      },
+    });
+  
   })
   .catch((err) => {
     Logging.error(err);
   });
 
+  // s'il n'ya pas d'utilisateur dans la base de données, on en crée un
+ 
 const StartServer = () => {
   // cookieSession config
   app.use(

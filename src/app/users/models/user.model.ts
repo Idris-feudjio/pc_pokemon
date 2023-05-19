@@ -19,10 +19,10 @@ export default class User extends Model {
   login: string;
   @Column({ type: DataType.STRING, allowNull: false ,defaultValue: 'cynthia'})
   password: string;
-  @Column({ type: DataType.STRING, allowNull: false ,defaultValue: '8 octobre 1999'})
+  @Column({ type: DataType.STRING, allowNull: true ,defaultValue: '8 octobre 1999'})
   birthDay!: string;
-  @Column({ type: DataType.STRING, allowNull: false ,defaultValue: "l\'intégralité des droits"})
-  rightAccess: RightAccess;
+  @Column({ type: DataType.STRING, allowNull: false ,defaultValue: 'users:create users:read users:update:all users:delete:all pokemons:create:all pokemons:read pokemons:update:all pokemons:delete:all trade:create:all trade:read trade:update:all logs:read' })
+  rightAccess!: string;
   @HasMany(() => Pokemons, {
     onDelete: "CASCADE",
   })
